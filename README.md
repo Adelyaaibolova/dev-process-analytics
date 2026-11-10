@@ -10,7 +10,7 @@ independently in Python to validate the numbers.
 ## Status
 
 - [x] Project setup
-- [ ] GitHub API client with pagination, rate-limit handling and retries
+- [x] GitHub API client with pagination, rate-limit handling and retries
 - [ ] Extract issues, pull requests and CI runs to CSV
 - [ ] KPI calculations in Python
 - [ ] Qlik Sense data model and dashboard
