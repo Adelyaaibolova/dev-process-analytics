@@ -14,6 +14,7 @@ independently in Python to validate the numbers.
 - [ ] Extract issues, pull requests and CI runs to CSV
 - [ ] KPI calculations in Python
 - [ ] Qlik Sense data model and dashboard
+- [ ] Power BI version of the dashboard (data model and DAX measures ready, see [`powerbi/`](powerbi/))
 - [ ] Validation: Qlik vs Python
 
 ## Development
