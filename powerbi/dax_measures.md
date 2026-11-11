@@ -1,7 +1,7 @@
 # DAX measures
 
 Create these on the `Events` table (Table tools > New measure). They use the
-same rules as the Qlik app and the Python check:
+same rules as the Python check (`devstats/kpis.py`):
 
 - **Window:** only events inside `window.csv` (the `Events` query already filters).
 - **Week:** starts on Monday (`Calendar[Week]`).

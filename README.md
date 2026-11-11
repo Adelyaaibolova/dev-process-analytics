@@ -2,7 +2,7 @@
 
 **How fast does an open-source team turn ideas into merged code, where does work wait, and how often does the build break?**
 
-Work in progress. The goal is a Qlik Sense dashboard that combines three
+A Power BI dashboard that combines three
 sources from a public GitHub repository (issues, pull requests and GitHub
 Actions CI runs) on one shared calendar, with every dashboard KPI recomputed
 independently in Python to validate the numbers.

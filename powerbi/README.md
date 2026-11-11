@@ -1,6 +1,6 @@
 # Power BI version of the dashboard
 
-The same KPIs as the Qlik Sense app, built in Power BI Desktop on the same CSV
+The dashboard KPIs, built in Power BI Desktop on the extracted CSV
 files. Status: data model, measures and the Overview page are done
 ([screenshot](../screenshots/powerbi-overview.png)); Flow, Quality and Backlog
 pages follow.
@@ -19,7 +19,7 @@ erDiagram
 `PR merged`, `PR closed`, `Issue opened`, `Issue closed`, `CI run`) with the
 values each KPI needs. Every measure filters `Events[EventType]`, so all charts
 share one date axis, and every relationship filters in one direction only.
-This is the Power BI counterpart of the canonical-date bridge in the Qlik app.
+This is a canonical-date pattern: one calendar serves every event type.
 
 ## Report file
 
