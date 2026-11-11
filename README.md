@@ -13,9 +13,8 @@ independently in Python to validate the numbers.
 - [x] GitHub API client with pagination, rate-limit handling and retries
 - [x] Extract issues, pull requests and CI runs to CSV
 - [x] KPI calculations in Python
-- [ ] Qlik Sense data model and dashboard
 - [x] Power BI dashboard: Overview page (see [`powerbi/`](powerbi/))
-- [ ] Validation: Qlik vs Python
+- [x] Validation: Power BI vs Python
 
 ## Dashboard (Power BI)
 
@@ -25,6 +24,24 @@ pydata/xarray, October 2026: 154 pull requests merged, median lead time of
 39 hours from opening to merge, 91 % of closed pull requests merged, 9.7 % of
 completed CI runs on `main` failed. The first and last weeks of the line chart
 are partial weeks of the month, which explains the lower counts at both ends.
+
+### Validation
+
+Every card on the Overview page was recomputed independently with
+`python -m devstats.kpis`. All values match:
+
+| KPI | Power BI | Python |
+| --- | ---: | ---: |
+| PRs merged | 154 | 154 |
+| Median PR lead time (h) | 39.25 | 39.25 |
+| Merge rate | 91.1 % | 91.1 % |
+| Issues closed | 73 | 73 |
+| CI failure rate | 9.7 % | 9.7 % |
+
+The Python check also shows a pattern the cards hide: 73 issues were closed
+but only 21 opened, and the median closed issue was 382 days old. In October
+the maintainers mostly cleaned up an old backlog rather than handling new
+reports.
 
 Data extracted with
 `python -m devstats.extract --repo pydata/xarray --since 2026-10-01 --until 2026-10-31 --skip-reviews --ci-branch main`
