@@ -1,8 +1,9 @@
 # Power BI version of the dashboard
 
 The same KPIs as the Qlik Sense app, built in Power BI Desktop on the same CSV
-files. Status: data model and measures are ready; report pages and screenshots
-follow.
+files. Status: data model, measures and the Overview page are done
+([screenshot](../screenshots/powerbi-overview.png)); Flow, Quality and Backlog
+pages follow.
 
 ## Model
 

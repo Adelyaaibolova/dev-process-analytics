@@ -14,8 +14,21 @@ independently in Python to validate the numbers.
 - [x] Extract issues, pull requests and CI runs to CSV
 - [ ] KPI calculations in Python
 - [ ] Qlik Sense data model and dashboard
-- [ ] Power BI version of the dashboard (data model and DAX measures ready, see [`powerbi/`](powerbi/))
+- [x] Power BI dashboard: Overview page (see [`powerbi/`](powerbi/))
 - [ ] Validation: Qlik vs Python
+
+## Dashboard (Power BI)
+
+![Power BI overview page](screenshots/powerbi-overview.png)
+
+pydata/xarray, October 2026: 154 pull requests merged, median lead time of
+39 hours from opening to merge, 91 % of closed pull requests merged, 9.7 % of
+completed CI runs on `main` failed. The first and last weeks of the line chart
+are partial weeks of the month, which explains the lower counts at both ends.
+
+Data extracted with
+`python -m devstats.extract --repo pydata/xarray --since 2026-10-01 --until 2026-10-31 --skip-reviews --ci-branch main`
+(review data skipped, CI limited to the `main` branch).
 
 ## Extract the data
 
