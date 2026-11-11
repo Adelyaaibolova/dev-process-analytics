@@ -11,11 +11,22 @@ independently in Python to validate the numbers.
 
 - [x] Project setup
 - [x] GitHub API client with pagination, rate-limit handling and retries
-- [ ] Extract issues, pull requests and CI runs to CSV
+- [x] Extract issues, pull requests and CI runs to CSV
 - [ ] KPI calculations in Python
 - [ ] Qlik Sense data model and dashboard
 - [ ] Power BI version of the dashboard (data model and DAX measures ready, see [`powerbi/`](powerbi/))
 - [ ] Validation: Qlik vs Python
+
+## Extract the data
+
+```bash
+export GITHUB_TOKEN=...   # Windows PowerShell: $env:GITHUB_TOKEN="..."
+python -m devstats.extract --repo pydata/xarray --since 2026-05-01 --until 2026-10-31
+```
+
+Writes `pull_requests.csv`, `issues.csv`, `labels.csv`, `ci_runs.csv`,
+`window.csv` and `meta.json` to `data/`. All timestamps are UTC. Options:
+`--skip-reviews`, `--ci-branch main`, `--ci-event push`, `--out folder`.
 
 ## Development
 
