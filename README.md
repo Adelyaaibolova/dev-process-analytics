@@ -12,7 +12,7 @@ independently in Python to validate the numbers.
 - [x] Project setup
 - [x] GitHub API client with pagination, rate-limit handling and retries
 - [x] Extract issues, pull requests and CI runs to CSV
-- [ ] KPI calculations in Python
+- [x] KPI calculations in Python
 - [ ] Qlik Sense data model and dashboard
 - [x] Power BI dashboard: Overview page (see [`powerbi/`](powerbi/))
 - [ ] Validation: Qlik vs Python
@@ -40,6 +40,18 @@ python -m devstats.extract --repo pydata/xarray --since 2026-05-01 --until 2026-
 Writes `pull_requests.csv`, `issues.csv`, `labels.csv`, `ci_runs.csv`,
 `window.csv` and `meta.json` to `data/`. All timestamps are UTC. Options:
 `--skip-reviews`, `--ci-branch main`, `--ci-event push`, `--out folder`.
+
+## Recompute the KPIs in Python
+
+```bash
+python -m devstats.kpis --data data --out results
+```
+
+Writes `results/kpi_summary.csv`, `results/kpi_weekly.csv` and
+`results/kpi_summary.md`. Every KPI follows the same rules as the dashboard:
+events inside the window (UTC), weeks starting on Monday, bot authors
+excluded, CI outcome `pass` / `fail` with cancelled and skipped runs ignored.
+If Power BI and Python disagree, one of them has a bug.
 
 ## Development
 
