@@ -106,3 +106,16 @@ def test_empty_window_gives_no_crash(data_dir):
     assert values["prs_opened"] == 0
     assert values["merge_rate"] is None
     assert values["median_pr_lead_time_h"] is None
+
+
+def test_review_share_is_unknown_without_review_data(data_dir):
+    path = data_dir / "pull_requests.csv"
+    lines = path.read_text(encoding="utf-8").splitlines()
+    header, rows = lines[0], [line.split(",") for line in lines[1:]]
+    column = header.split(",").index("first_review_at")
+    for row in rows:
+        row[column] = ""
+    path.write_text("\n".join([header] + [",".join(r) for r in rows]) + "\n", encoding="utf-8")
+    values = kpis.summary(kpis.load(data_dir))
+    assert values["share_reviewed_within_24h"] is None
+    assert values["median_hours_to_first_review"] is None

@@ -95,7 +95,7 @@ def load(data_dir: Path) -> Data:
 def week_start(moments: pd.Series) -> pd.Series:
     """Monday of the week, as a date (matches Qlik ``WeekStart(date, 0, 0)``)."""
     days = moments.dt.normalize()
-    return days - pd.to_timedelta(days.dt.weekday, unit="D")
+    return days - pd.to_timedelta(days.dt.dayofweek, unit="D")
 
 
 def _inside(moments: pd.Series, data: Data) -> pd.Series:
@@ -159,6 +159,8 @@ def events(data: Data, include_bots: bool = False) -> Events:
 
 def _kpis_for(ev: Events) -> dict[str, float | int | None]:
     reviewed_fast = (ev.pr_opened["hours_to_first_review"] <= 24).sum()
+    # Without review data (extract --skip-reviews) the share is unknown, not zero.
+    has_reviews = bool(ev.pr_opened["first_review_at"].notna().any())
     failed = (ev.ci_completed["outcome"] == "fail").sum()
     return {
         "prs_opened": len(ev.pr_opened),
@@ -167,7 +169,9 @@ def _kpis_for(ev: Events) -> dict[str, float | int | None]:
         "merge_rate": _share(int(ev.pr_closed["merged_at"].notna().sum()), len(ev.pr_closed)),
         "median_pr_lead_time_h": _median(ev.pr_merged["lead_time_h"]),
         "median_hours_to_first_review": _median(ev.pr_opened["hours_to_first_review"]),
-        "share_reviewed_within_24h": _share(int(reviewed_fast), len(ev.pr_opened)),
+        "share_reviewed_within_24h": (
+            _share(int(reviewed_fast), len(ev.pr_opened)) if has_reviews else None
+        ),
         "issues_opened": len(ev.issue_opened),
         "issues_closed": len(ev.issue_closed),
         "median_days_to_close_issue": _median(ev.issue_closed["days_to_close"]),
