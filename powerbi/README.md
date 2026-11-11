@@ -21,6 +21,14 @@ values each KPI needs. Every measure filters `Events[EventType]`, so all charts
 share one date axis, and every relationship filters in one direction only.
 This is the Power BI counterpart of the canonical-date bridge in the Qlik app.
 
+## Report file
+
+[`dev-process-analytics.pbix`](dev-process-analytics.pbix) contains the model,
+the measures and the Overview page with the October 2026 data of pydata/xarray.
+To refresh it with your own extract, open it in Power BI Desktop, set the
+`DataFolder` parameter (Transform data > Manage parameters) to your `data`
+folder and click Refresh.
+
 ## Build it
 
 1. Install **Power BI Desktop** (free, Windows).
